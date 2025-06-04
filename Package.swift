@@ -3,19 +3,26 @@
 
 import PackageDescription
 
-let package = Package(
-    name: "TAAppUtils",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "TAAppUtils",
-            targets: ["TAAppUtils"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "TAAppUtils"),
+import PackageDescription
 
+private let packageName = "TAAppUtils"
+
+let package = Package(
+    name: packageName,
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v13)
+    ],
+    products: [
+        .library(
+            name: packageName,
+            targets: [packageName]),
+    ],
+    dependencies: [],
+    targets: [
+        .target(
+            name: packageName,
+            dependencies: []
+        ),
     ]
 )
