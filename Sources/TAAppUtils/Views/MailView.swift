@@ -17,6 +17,8 @@ public struct MailView: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
     
     @Binding var result: Result<MFMailComposeResult, Error>?
+    
+    public init() {}
 
     public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         
