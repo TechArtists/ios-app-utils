@@ -9,7 +9,7 @@
 import UIKit
 
 /// Utility for accessing screen and device-specific properties.
-enum ScreenDimensions {
+public enum ScreenDimensions {
     // MARK: - Screen Properties
     static let screenWidth: CGFloat = UIScreen.main.bounds.width
     static let screenHeight: CGFloat = UIScreen.main.bounds.height

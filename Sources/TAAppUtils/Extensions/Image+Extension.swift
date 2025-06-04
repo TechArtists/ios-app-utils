@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension Image {
+public extension Image {
     init?(adaptiveName name: String) {
         if let systemImage = UIImage(systemName: name) {
             self = Image(uiImage: systemImage)
@@ -20,9 +20,9 @@ extension Image {
     }
 }
 
-extension String {
+public extension String {
     var isSFSymbolImage: Bool {
-        if let systemImage = UIImage(systemName: self) {
+        if let _ = UIImage(systemName: self) {
             return true
         }
         

@@ -13,12 +13,12 @@ import MessageUI
 import SwiftUI
 import MessageUI
 
-struct MailView: UIViewControllerRepresentable {
+public struct MailView: UIViewControllerRepresentable {
     @Environment(\.dismiss) var dismiss
     
     @Binding var result: Result<MFMailComposeResult, Error>?
 
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+    public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         
         var dismiss: DismissAction
         @Binding var result: Result<MFMailComposeResult, Error>?
@@ -28,7 +28,7 @@ struct MailView: UIViewControllerRepresentable {
             _result = result
         }
         
-        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
             
             if let error = error {
                 self.result = .failure(error)
@@ -40,16 +40,16 @@ struct MailView: UIViewControllerRepresentable {
         }
     }
 
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         Coordinator(dismiss: dismiss, result: $result)
     }
 
-    func makeUIViewController(context: Context) -> MFMailComposeViewController {
+    public func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let mailComposeVC = MFMailComposeViewController()
         mailComposeVC.setToRecipients([""])
         mailComposeVC.mailComposeDelegate = context.coordinator
         return mailComposeVC
     }
 
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) { }
+    public func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) { }
 }

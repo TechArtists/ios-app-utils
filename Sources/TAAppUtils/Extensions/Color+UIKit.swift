@@ -8,13 +8,13 @@
 import SwiftUI
 import UIKit
 
-extension Color {
+public extension Color {
     var uiColor: UIColor {
         UIColor(self)
     }
 }
 
-extension Color {
+public extension Color {
      
     // MARK: - Text Colors
     static let lightText = Color(UIColor.lightText)
