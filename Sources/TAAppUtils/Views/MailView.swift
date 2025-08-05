@@ -18,8 +18,11 @@ public struct MailView: UIViewControllerRepresentable {
     
     @Binding var result: Result<MFMailComposeResult, Error>?
     
-    public init(result: Binding<Result<MFMailComposeResult, Error>?>) {
+    let toRecipients: [String]
+    
+    public init(result: Binding<Result<MFMailComposeResult, Error>?>, toRecipients: [String]) {
         self._result = result
+        self.toRecipients = toRecipients
     }
 
     public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
@@ -50,7 +53,7 @@ public struct MailView: UIViewControllerRepresentable {
 
     public func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let mailComposeVC = MFMailComposeViewController()
-        mailComposeVC.setToRecipients([""])
+        mailComposeVC.setToRecipients(toRecipients)
         mailComposeVC.mailComposeDelegate = context.coordinator
         return mailComposeVC
     }
