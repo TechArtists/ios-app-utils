@@ -10,17 +10,17 @@ import Foundation
 import StoreKit
 
 // swiftlint:disable identifier_name
-enum AppConfiguration {
+public enum AppConfiguration {
     case Debug
     case TestFlight
     case AppStore
 }
 
-struct EnvConfig {
+public struct EnvConfig {
     
     /// Detects if the app is running in TestFlight environment
     /// Uses multiple detection methods for better reliability across iOS versions
-    static var isTestFlight: Bool {
+    public static var isTestFlight: Bool {
         // Method 1: Receipt URL check (still works on iOS 18, though deprecated)
         // This remains the most reliable method for TestFlight detection
         if let receiptURL = Bundle.main.appStoreReceiptURL {
@@ -44,7 +44,7 @@ struct EnvConfig {
     }
     
     /// Detects if the app is running in Debug mode
-    static var isDebug: Bool {
+    public static var isDebug: Bool {
         #if DEBUG
         return true
         #else
@@ -53,7 +53,7 @@ struct EnvConfig {
     }
     
     /// Returns the current app configuration based on environment
-    static var appConfiguration: AppConfiguration {
+    public static var appConfiguration: AppConfiguration {
         if isDebug {
             return .Debug
         } else if isTestFlight {
@@ -66,7 +66,7 @@ struct EnvConfig {
     /// Async method to detect sandbox environment using StoreKit (iOS 15+)
     /// This is the modern approach recommended by Apple for future iOS versions
     @available(iOS 15.0, *)
-    static func detectSandboxEnvironmentAsync() async -> Bool {
+    public static func detectSandboxEnvironmentAsync() async -> Bool {
         do {
             // Check if any current transactions are in sandbox environment
             for await result in Transaction.currentEntitlements {
